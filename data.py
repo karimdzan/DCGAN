@@ -4,7 +4,7 @@ from torchvision.datasets import ImageFolder
 import torchvision.transforms as T
 from PIL import Image
 
-class AnimeFaces(Dataset):
+class Base(Dataset):
     def __init__(self, image_folder, transform=None):
         self.image_folder = image_folder
         self.image_paths = os.listdir(image_folder)

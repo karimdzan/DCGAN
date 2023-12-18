@@ -23,7 +23,7 @@ class Generator(nn.Module):
               0, 
               bias=False),
             nn.BatchNorm2d(hidden_dim * 8),
-            nn.LeakyReLU(0.2, inplace=True),
+            nn.LeakyReLU(0.2, inplace=False),
 
             nn.ConvTranspose2d(
               hidden_dim * 8, 
@@ -33,7 +33,7 @@ class Generator(nn.Module):
               padding, 
               bias=False),
             nn.BatchNorm2d(hidden_dim * 16),
-            nn.LeakyReLU(0.2, inplace=True),
+            nn.LeakyReLU(0.2, inplace=False),
 
             nn.ConvTranspose2d( 
               hidden_dim * 16, 
@@ -43,7 +43,7 @@ class Generator(nn.Module):
               padding, 
               bias=False),
             nn.BatchNorm2d(hidden_dim * 8),
-            nn.LeakyReLU(0.2, inplace=True),
+            nn.LeakyReLU(0.2, inplace=False),
 
             nn.ConvTranspose2d( 
               hidden_dim * 8, 
@@ -53,7 +53,7 @@ class Generator(nn.Module):
               padding, 
               bias=False),
             nn.BatchNorm2d(hidden_dim * 4),
-            nn.LeakyReLU(0.2, inplace=True),
+            nn.LeakyReLU(0.2, inplace=False),
 
             nn.ConvTranspose2d(
               hidden_dim * 4, 
@@ -75,19 +75,19 @@ class Discriminator(nn.Module):
         super(Discriminator, self).__init__()
         self.main = nn.Sequential(
             nn.Conv2d(in_channels, hidden_dim, kernel_size, stride, padding, bias=False),
-            nn.LeakyReLU(0.2, inplace=True),
+            nn.LeakyReLU(0.2, inplace=False),
 
             nn.Conv2d(hidden_dim, hidden_dim * 2, kernel_size, stride, padding, bias=False),
             nn.BatchNorm2d(hidden_dim * 2),
-            nn.LeakyReLU(0.2, inplace=True),
+            nn.LeakyReLU(0.2, inplace=False),
 
             nn.Conv2d(hidden_dim * 2, hidden_dim * 4, kernel_size, stride, padding, bias=False),
             nn.BatchNorm2d(hidden_dim * 4),
-            nn.LeakyReLU(0.2, inplace=True),
+            nn.LeakyReLU(0.2, inplace=False),
 
             nn.Conv2d(hidden_dim * 4, hidden_dim * 2, kernel_size, stride, padding, bias=False),
             nn.BatchNorm2d(hidden_dim * 2),
-            nn.LeakyReLU(0.2, inplace=True),
+            nn.LeakyReLU(0.2, inplace=False),
 
             nn.Conv2d(hidden_dim * 2, out_channels, kernel_size, 1, 0, bias=False),
             nn.Sigmoid()

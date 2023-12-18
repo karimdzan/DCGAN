@@ -14,7 +14,9 @@ import matplotlib.animation as animation
 from IPython.display import HTML
 from data import Base
 from model import Generator, Discriminator
-from piq import FID, ssim
+from dataclasses import asdict
+
+# from piq import FID, ssim
 
 from torch.utils.data import DataLoader
 from config import generator_config, discriminator_config
@@ -22,7 +24,7 @@ from config import generator_config, discriminator_config
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 def main():
-    generator = Generator(**generator_config).to(device)
+    generator = Generator(**asdict(generator_config)).to(device)
     generator.load_state_dict(torch.load('checkpoint.pth')['generator'])
     random_noise = torch.randn(64, 100, 1, 1, device=device)
     generator.eval()
