@@ -66,7 +66,7 @@ def train(dataloader, gen, disc, optimizerD, optimizerG, criterion):
 
             gen.zero_grad()
             label.fill_(real_label)
-            output = disc(fake).view(-1)
+            output = disc(fake.detach()).view(-1)
             errG = criterion(output, label)
             errG.backward()
             D_G_z2 = output.mean().item()
